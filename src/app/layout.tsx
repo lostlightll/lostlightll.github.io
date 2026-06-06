@@ -4,6 +4,19 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
+const script = `
+  (function() {
+    try {
+      var s = localStorage.getItem("theme");
+      var d = document.documentElement;
+      if (s === "dark" || (!s && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        d.setAttribute("data-theme", "dark");
+        d.classList.add("dark");
+      }
+    } catch(e) {}
+  })();
+`;
+
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -15,23 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={siteConfig.locale} className="scroll-smooth" suppressHydrationWarning>
+    <html lang={siteConfig.locale} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var stored = localStorage.getItem("theme");
-                  var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                  if (stored === "dark" || (!stored && prefersDark)) {
-                    document.documentElement.classList.add("dark");
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: script }} />
       </head>
       <body className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
         <Header />

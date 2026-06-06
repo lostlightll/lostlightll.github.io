@@ -1,53 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/data/content";
 
+const navLinks = [
+  { href: "/about", label: "关于" },
+  { href: "/posts", label: "文章" },
+  { href: "/#projects", label: "项目" },
+  { href: "/#contact", label: "联系" },
+];
+
 export function Header() {
-  const [dark, setDark] = useState(false);
+  const [resolved, setResolved] = useState<boolean | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isDark = stored === "dark" || (!stored && prefersDark);
-    setDark(isDark);
-    document.documentElement.classList.toggle("dark", isDark);
+    const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setResolved(stored === "dark" || (!stored && prefers));
   }, []);
 
-  const toggleDark = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
+  const toggle = useCallback(() => {
+    const html = document.documentElement;
+    const next = !html.classList.contains("dark");
+    html.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
-  };
+    setResolved(next);
+  }, []);
+
+  const dark = resolved ?? false;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md dark:bg-zinc-900/80 border-b border-zinc-200/50 dark:border-zinc-800/50">
-      <nav className="mx-auto max-w-5xl flex items-center justify-between px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md dark:bg-zinc-950/85 border-b border-zinc-200/60 dark:border-zinc-800/60">
+      <nav className="mx-auto max-w-5xl flex items-center justify-between h-14 px-6">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+          className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 hover:opacity-70 transition-opacity"
         >
           {siteConfig.title}
         </Link>
-        <div className="flex items-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
-          <Link href="#about" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-            关于
-          </Link>
-          <Link href="#projects" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-            项目
-          </Link>
-          <Link href="#skills" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-            技能
-          </Link>
-          <Link href="#contact" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-            联系
-          </Link>
+        <div className="flex items-center gap-5 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+          {navLinks.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
+              {l.label}
+            </Link>
+          ))}
           <button
-            onClick={toggleDark}
-            className="p-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-            aria-label="Toggle dark mode"
+            onClick={toggle}
+            className="ml-1 p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            aria-label="切换暗色模式"
+            type="button"
           >
             {dark ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
