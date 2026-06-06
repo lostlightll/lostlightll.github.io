@@ -37,7 +37,7 @@ export function HeroSection() {
           </p>
 
           <p className="mt-6 text-base text-zinc-800/70 dark:text-zinc-200/65 leading-relaxed max-w-lg">
-            开发只是兴趣爱好，了解的不多。主力工具 Claude Code，正在尝试切换为 CodeX 工作流。
+            业余开发者，目前主要维护逆战未来维基 Fork。
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
