@@ -9,7 +9,7 @@ export function HeroSection() {
           aria-hidden="true"
           className="w-full h-full object-cover object-center blur-sm"
           style={{
-            transform: "scale(1.5) translate(-8%, 18%)",
+            transform: "scale(1.5) translate(-10%, 18%)",
             maskImage: "linear-gradient(to bottom, black 40%, transparent 97%)",
             WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 97%)",
           }}

@@ -7,10 +7,10 @@ export function AboutSection() {
         <div className="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
           <p>你好，我是 Kha1ed。2011.04.26，男。</p>
           <p>
-            喜欢玩各种各样的游戏。Apex 猎杀，CS2 完美 S，5E 3000 分。
+            喜欢玩各种各样的游戏。Apex猎杀，CS2完美S，5E3000分。
           </p>
           <p>
-            开发可能只是兴趣爱好，了解的不多。主力工具 Claude Code，本项目正在尝试切换为 CodeX 工作流。
+            开发可能只是兴趣爱好，了解的不多。主力工具VSCode+ClaudeCode。
           </p>
         </div>
         <div className="space-y-5">
@@ -24,7 +24,7 @@ export function AboutSection() {
           </div>
           <div>
             <dt className="text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wide">主力工具</dt>
-            <dd className="mt-1 text-zinc-900 dark:text-zinc-100">Claude Code → CodeX</dd>
+            <dd className="mt-1 text-zinc-900 dark:text-zinc-100">VSCode ClaudeCode</dd>
           </div>
         </div>
       </div>
