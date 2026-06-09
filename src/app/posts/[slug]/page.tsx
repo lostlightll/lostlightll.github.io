@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { useMDXComponents } from '@/mdx-components';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,6 +20,8 @@ export default async function PostPage({ params }: Props) {
   if (!post) {
     notFound();
   }
+
+  const components = useMDXComponents({});
 
   return (
     <div className="min-h-[calc(100vh-8rem)] py-20 px-6">
@@ -48,9 +52,7 @@ export default async function PostPage({ params }: Props) {
           )}
         </header>
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-          <pre className="whitespace-pre-wrap font-sans text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            {post.content}
-          </pre>
+          <MDXRemote source={post.content} components={components} />
         </div>
         <Link
           href="/posts"

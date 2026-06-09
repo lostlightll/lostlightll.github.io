@@ -5,7 +5,7 @@ export function AboutSection() {
     <Section id="about" title="关于">
       <div className="grid gap-10 md:grid-cols-[2fr_1fr]">
         <div className="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          <p>你好，我是 Kha1ed。2011.04.26，男。</p>
+          <p>你好，我是 Kha1ed</p>
           <p>
             喜欢玩各种各样的游戏。Apex猎杀，CS2完美S，5E3000分。
           </p>
