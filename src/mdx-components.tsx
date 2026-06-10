@@ -1,10 +1,35 @@
-import type { MDXComponents } from 'mdx/types';
+import type { MDXComponents } from "mdx/types";
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w一-鿿]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function headingId(children: unknown): string | undefined {
+  if (typeof children === "string") return slugify(children);
+  if (Array.isArray(children)) {
+    const text = children
+      .filter((c): c is string => typeof c === "string")
+      .join("");
+    if (text) return slugify(text);
+  }
+  // single child that's not a string — skip id
+  return undefined;
+}
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => <h1 className="text-3xl font-bold tracking-tight mt-8 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl font-semibold tracking-tight mt-6 mb-3">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl font-semibold mt-4 mb-2">{children}</h3>,
+    h2: ({ children }) => {
+      const id = headingId(children);
+      return <h2 id={id} className="text-2xl font-semibold tracking-tight mt-8 mb-3 scroll-mt-20">{children}</h2>;
+    },
+    h3: ({ children }) => {
+      const id = headingId(children);
+      return <h3 id={id} className="text-xl font-semibold mt-6 mb-2 scroll-mt-20">{children}</h3>;
+    },
     p: ({ children }) => <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">{children}</p>,
     a: ({ href, children }) => (
       <a href={href} className="text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors">
