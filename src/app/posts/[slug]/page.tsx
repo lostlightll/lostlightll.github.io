@@ -43,11 +43,11 @@ export default async function PostPage({ params }: Props) {
           <header className="mb-10">
             {/* Meta row */}
             <div className="flex items-center gap-3 text-sm">
-              <time className="tabular-nums text-zinc-400 dark:text-zinc-500">
+              <time className="tabular-nums text-zinc-500 dark:text-zinc-500">
                 {meta.date}
               </time>
-              <span className="text-zinc-300 dark:text-zinc-700">·</span>
-              <span className="inline-flex items-center gap-1.5 text-zinc-400 dark:text-zinc-500">
+              <span className="text-zinc-400 dark:text-zinc-700">·</span>
+              <span className="inline-flex items-center gap-1.5 text-zinc-500 dark:text-zinc-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -73,7 +73,7 @@ export default async function PostPage({ params }: Props) {
 
             {/* Description */}
             {meta.description && (
-              <p className="mt-3 text-lg leading-relaxed text-zinc-500 dark:text-zinc-400">
+              <p className="mt-3 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {meta.description}
               </p>
             )}
@@ -84,7 +84,7 @@ export default async function PostPage({ params }: Props) {
                 {meta.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-50 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-400"
+                    className="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-700 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-400"
                   >
                     {tag}
                   </span>
@@ -111,7 +111,7 @@ export default async function PostPage({ params }: Props) {
 
             {/* Author */}
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-lg font-semibold text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-200/60 text-lg font-semibold text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
                 {siteConfig.author.charAt(0)}
               </div>
               <div>
@@ -124,7 +124,7 @@ export default async function PostPage({ params }: Props) {
                       href={siteConfig.social.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-400 transition-colors hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+                      className="text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
                     >
                       GitHub
                     </a>
@@ -132,7 +132,7 @@ export default async function PostPage({ params }: Props) {
                   {siteConfig.social.email && (
                     <a
                       href={`mailto:${siteConfig.social.email}`}
-                      className="text-zinc-400 transition-colors hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+                      className="text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
                     >
                       Email
                     </a>
@@ -179,10 +179,10 @@ function PostNavLink({
         isPrev ? "" : "text-right"
       }`}
     >
-      <span className="text-xs font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+      <span className="text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-500">
         {isPrev ? "← 上一篇" : "下一篇 →"}
       </span>
-      <span className="mt-1 text-sm font-medium text-zinc-700 transition-colors group-hover:text-blue-600 dark:text-zinc-300 dark:group-hover:text-blue-400 line-clamp-1">
+      <span className="mt-1 text-sm font-medium text-zinc-800 transition-colors group-hover:text-blue-600 dark:text-zinc-300 dark:group-hover:text-blue-400 line-clamp-1">
         {post.title}
       </span>
     </Link>

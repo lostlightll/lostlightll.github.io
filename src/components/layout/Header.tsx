@@ -12,26 +12,26 @@ const navLinks = [
 ];
 
 export function Header() {
-  const [resolved, setResolved] = useState<boolean | null>(null);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setResolved(stored === "dark" || (!stored && prefers));
+    setDark(document.documentElement.classList.contains("dark"));
   }, []);
 
   const toggle = useCallback(() => {
     const html = document.documentElement;
     const next = !html.classList.contains("dark");
-    html.classList.toggle("dark", next);
+    if (next) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
     localStorage.setItem("theme", next ? "dark" : "light");
-    setResolved(next);
+    setDark(next);
   }, []);
 
-  const dark = resolved ?? false;
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md dark:bg-zinc-950/85 border-b border-zinc-200/60 dark:border-zinc-800/60">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-50/85 backdrop-blur-md dark:bg-zinc-950/85 border-b border-zinc-200/60 dark:border-zinc-800/60">
       <nav className="mx-auto max-w-5xl flex items-center justify-between h-14 px-6">
         <Link
           href="/"

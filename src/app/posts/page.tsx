@@ -12,7 +12,7 @@ export default function PostsPage() {
           <div className="flex items-baseline justify-between">
             <h1 className="text-3xl font-bold tracking-tight">文章</h1>
             {posts.length > 0 && (
-              <span className="text-sm text-zinc-400 dark:text-zinc-500 tabular-nums">
+              <span className="text-sm text-zinc-500 dark:text-zinc-500 tabular-nums">
                 共 {posts.length} 篇
               </span>
             )}
@@ -68,7 +68,7 @@ export default function PostsPage() {
                   </h2>
 
                   {post.description && (
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2">
                       {post.description}
                     </p>
                   )}
@@ -78,7 +78,7 @@ export default function PostsPage() {
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-50 px-2.5 py-0.5 text-xs font-medium text-zinc-600 transition-colors group-hover:border-zinc-300 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-400"
+                          className="inline-flex items-center rounded-md border border-zinc-200/80 bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-700 transition-colors group-hover:border-zinc-300 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-400"
                         >
                           {tag}
                         </span>
@@ -93,7 +93,7 @@ export default function PostsPage() {
 
         <Link
           href="/"
-          className="mt-10 inline-flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
+          className="mt-10 inline-flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +130,7 @@ function EmptyState() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-zinc-300 dark:text-zinc-600"
+          className="text-zinc-400 dark:text-zinc-600"
         >
           <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
           <polyline points="14 2 14 8 20 8" />
@@ -138,7 +138,7 @@ function EmptyState() {
           <line x1="16" x2="8" y1="17" y2="17" />
         </svg>
       </div>
-      <p className="mt-4 text-sm text-zinc-400 dark:text-zinc-500">
+      <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-500">
         暂无文章，稍后再来看看。
       </p>
     </div>

@@ -5,7 +5,7 @@ export function ContactSection() {
   return (
     <Section id="contact" title="联系">
       <div className="max-w-md">
-        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+        <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
           有有趣的想法想交流，或者只是打个招呼，随时联系。
         </p>
         <div className="mt-6 flex items-center gap-6">

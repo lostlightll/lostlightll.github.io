@@ -10,8 +10,9 @@ const script = `
       var s = localStorage.getItem("theme");
       var d = document.documentElement;
       if (s === "dark" || (!s && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        d.setAttribute("data-theme", "dark");
         d.classList.add("dark");
+      } else if (s === "light") {
+        d.classList.remove("dark");
       }
     } catch(e) {}
   })();
@@ -32,7 +33,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: script }} />
       </head>
-      <body className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+      <body className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
         <Header />
         <main className="mx-auto max-w-5xl">{children}</main>
         <Footer />

@@ -14,8 +14,8 @@ export function HeroSection() {
             WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 97%)",
           }}
         />
-        <div className="absolute inset-0 bg-[#787877]/35 dark:bg-zinc-950/55" />
-        <div className="absolute top-full left-0 right-0 h-[50vh] bg-gradient-to-b from-[#787877]/35 via-[#787877]/15 to-transparent dark:from-zinc-950/55 dark:via-zinc-950/15 dark:to-transparent" />
+        <div className="absolute inset-0 bg-white/65 dark:bg-zinc-950/55" />
+        <div className="absolute top-full left-0 right-0 h-[50vh] bg-gradient-to-b from-white/65 via-white/30 to-transparent dark:from-zinc-950/55 dark:via-zinc-950/15 dark:to-transparent" />
       </div>
 
       <div className="flex items-center justify-between gap-6">
@@ -32,11 +32,11 @@ export function HeroSection() {
             Kha1ed
           </h1>
 
-          <p className="mt-2 text-sm font-semibold text-zinc-800/80 dark:text-zinc-200/75 tracking-wide uppercase">
+          <p className="mt-2 text-sm font-semibold text-zinc-600 dark:text-zinc-200/75 tracking-wide uppercase">
             Nyx / Nyxlium / Lost Light
           </p>
 
-          <p className="mt-6 text-base text-zinc-800/70 dark:text-zinc-200/65 leading-relaxed max-w-lg">
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-300/70 leading-relaxed max-w-lg">
             业余开发者，目前主要维护逆战未来维基 Fork。
           </p>
 

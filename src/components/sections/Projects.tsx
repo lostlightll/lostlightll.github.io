@@ -36,7 +36,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           {/* Project icon */}
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-sm font-bold text-zinc-400 transition-colors group-hover:border-zinc-300 group-hover:text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-500 dark:group-hover:border-zinc-600 dark:group-hover:text-zinc-400">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100 text-sm font-bold text-zinc-500 transition-colors group-hover:border-zinc-300 group-hover:text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-500 dark:group-hover:border-zinc-600 dark:group-hover:text-zinc-400">
             {project.title.charAt(0).toUpperCase()}
           </div>
           <h3 className="font-semibold text-zinc-900 transition-colors group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400">
@@ -55,7 +55,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="shrink-0 text-zinc-300 transition-colors group-hover:text-blue-500 dark:text-zinc-600 dark:group-hover:text-blue-400"
+          className="shrink-0 text-zinc-400 transition-colors group-hover:text-blue-500 dark:text-zinc-600 dark:group-hover:text-blue-400"
         >
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
           <polyline points="15 3 21 3 21 9" />
@@ -64,7 +64,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
 
       {/* Description */}
-      <p className="mt-3 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+      <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
         {project.description}
       </p>
 

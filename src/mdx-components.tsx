@@ -30,14 +30,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const id = headingId(children);
       return <h3 id={id} className="text-xl font-semibold mt-6 mb-2 scroll-mt-20">{children}</h3>;
     },
-    p: ({ children }) => <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">{children}</p>,
+    p: ({ children }) => <p className="text-zinc-700 dark:text-zinc-400 leading-relaxed mb-4">{children}</p>,
     a: ({ href, children }) => (
       <a href={href} className="text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors">
         {children}
       </a>
     ),
-    ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-zinc-600 dark:text-zinc-400 mb-4">{children}</ul>,
-    ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 text-zinc-600 dark:text-zinc-400 mb-4">{children}</ol>,
+    ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-zinc-700 dark:text-zinc-400 mb-4">{children}</ul>,
+    ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 text-zinc-700 dark:text-zinc-400 mb-4">{children}</ol>,
     li: ({ children }) => <li>{children}</li>,
     code: ({ children }) => (
       <code className="rounded bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 text-sm font-mono text-zinc-800 dark:text-zinc-200">
@@ -50,7 +50,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </pre>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 italic text-zinc-500 dark:text-zinc-400 mb-4">
+      <blockquote className="border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 italic text-zinc-600 dark:text-zinc-400 mb-4">
         {children}
       </blockquote>
     ),

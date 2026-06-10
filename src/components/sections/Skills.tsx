@@ -21,14 +21,14 @@ export function SkillsSection() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((group) => (
           <div key={group.category} className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5">
-            <h3 className="font-semibold text-xs text-zinc-400 dark:text-zinc-500 uppercase tracking-wide mb-4">
+            <h3 className="font-semibold text-xs text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-4">
               {group.category}
             </h3>
             <ul className="space-y-1.5">
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="text-sm text-zinc-700 dark:text-zinc-300"
+                  className="text-sm text-zinc-800 dark:text-zinc-300"
                 >
                   {item}
                 </li>
