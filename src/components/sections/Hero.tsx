@@ -14,8 +14,8 @@ export function HeroSection() {
             WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 97%)",
           }}
         />
-        <div className="absolute inset-0 bg-white/65 dark:bg-zinc-950/55" />
-        <div className="absolute top-full left-0 right-0 h-[50vh] bg-gradient-to-b from-white/65 via-white/30 to-transparent dark:from-zinc-950/55 dark:via-zinc-950/15 dark:to-transparent" />
+        <div className="absolute inset-0 bg-zinc-50/70 dark:bg-zinc-950/55" />
+        <div className="absolute top-full left-0 right-0 h-[50vh] bg-gradient-to-b from-zinc-50/70 via-zinc-50/30 to-transparent dark:from-zinc-950/55 dark:via-zinc-950/15 dark:to-transparent" />
       </div>
 
       <div className="flex items-center justify-between gap-6">
