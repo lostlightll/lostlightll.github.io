@@ -118,7 +118,7 @@ export default function PostsPage() {
 
 function EmptyState() {
   return (
-    <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50/50 px-6 py-16 text-center dark:border-zinc-700 dark:bg-zinc-900/50">
+    <div className="rounded-xl border border-dashed border-zinc-300 bg-white px-6 py-16 text-center dark:border-zinc-700 dark:bg-zinc-900/50">
       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
         <svg
           xmlns="http://www.w3.org/2000/svg"
