@@ -86,7 +86,7 @@ Edit `src/data/content.ts` to change title, author, social links. The `SiteConfi
 - 一个功能 / 一个组件 / 一个文件组 = 一次 commit
 - 不要把所有改动塞进一个大 commit
 - Commit message 用中文描述做了什么（如 `优化 Hero 按钮样式`、`重写 CLAUDE.md 与 README`）
-- 结尾统一加 `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`
+- 结尾统一加 `Co-Authored-By: Claude <noreply@anthropic.com>`
 
 ## Project Memory
 
