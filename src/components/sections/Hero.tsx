@@ -92,7 +92,7 @@ export function HeroSection() {
               href="https://space.bilibili.com/3494356482787443"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-xl bg-[#FDE8EE] px-5 py-2.5 text-sm font-medium text-[#B03058] shadow-sm shadow-[#FBC8D6]/50 transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#FBD5E0] hover:shadow-md hover:shadow-[#F5A5BB]/40 dark:bg-[#FB7299] dark:text-white dark:shadow-[#FB7299]/25 dark:hover:bg-[#FC8EAC] dark:hover:shadow-lg dark:hover:shadow-[#FB7299]/30 motion-reduce:transition-none cursor-pointer"
+              className="group inline-flex items-center gap-2 rounded-xl bg-[#FDE8EE] px-5 py-2.5 text-sm font-medium text-[#C23A5C] shadow-sm shadow-[#FBC8D6]/50 transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#FBD5E0] hover:shadow-md hover:shadow-[#F5A5BB]/40 dark:bg-[#FB7299] dark:text-white dark:shadow-[#FB7299]/25 dark:hover:bg-[#FC8EAC] dark:hover:shadow-lg dark:hover:shadow-[#FB7299]/30 motion-reduce:transition-none cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
