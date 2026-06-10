@@ -8,5 +8,6 @@ export const siteConfig: SiteConfig = {
   social: {
     github: "https://github.com/lostlightll",
     email: "2923891440@qq.com",
+    bilibili: "https://space.bilibili.com/3494356482787443",
   },
 };

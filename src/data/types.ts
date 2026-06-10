@@ -8,5 +8,6 @@ export interface SiteConfig {
     twitter?: string;
     linkedin?: string;
     email?: string;
+    bilibili?: string;
   };
 }

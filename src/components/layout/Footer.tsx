@@ -31,6 +31,11 @@ export function Footer() {
               Email
             </a>
           )}
+          {siteConfig.social.bilibili && (
+            <a href={siteConfig.social.bilibili} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors cursor-pointer">
+              B站
+            </a>
+          )}
         </div>
       </div>
     </footer>
