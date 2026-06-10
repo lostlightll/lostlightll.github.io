@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={siteConfig.locale} suppressHydrationWarning>
+    <html lang={siteConfig.locale} suppressHydrationWarning className="scroll-smooth scroll-pt-14">
       <head>
         <script dangerouslySetInnerHTML={{ __html: script }} />
       </head>
