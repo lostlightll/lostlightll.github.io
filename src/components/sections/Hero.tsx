@@ -87,12 +87,12 @@ export function HeroSection() {
               查看仓库
             </a>
 
-            {/* B站：浅色浅粉实色+深字，暗色 B站原色+白字 */}
+            {/* B站：浅色极浅粉底+深粉字，暗色 B站原色+白字 */}
             <a
               href="https://space.bilibili.com/3494356482787443"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-xl bg-[#FB7299] px-5 py-2.5 text-sm font-medium text-zinc-800 shadow-sm shadow-[#FB7299]/20 transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#FC8EAC] hover:shadow-md hover:shadow-[#FB7299]/30 dark:text-white dark:shadow-[#FB7299]/25 dark:hover:bg-[#FC8EAC] dark:hover:shadow-lg dark:hover:shadow-[#FB7299]/30 motion-reduce:transition-none cursor-pointer"
+              className="group inline-flex items-center gap-2 rounded-xl bg-[#FDE8EE] px-5 py-2.5 text-sm font-medium text-[#B03058] shadow-sm shadow-[#FBC8D6]/50 transition-all duration-200 hover:-translate-y-[1px] hover:bg-[#FBD5E0] hover:shadow-md hover:shadow-[#F5A5BB]/40 dark:bg-[#FB7299] dark:text-white dark:shadow-[#FB7299]/25 dark:hover:bg-[#FC8EAC] dark:hover:shadow-lg dark:hover:shadow-[#FB7299]/30 motion-reduce:transition-none cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
