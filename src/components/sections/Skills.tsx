@@ -7,11 +7,11 @@ const skills = [
   },
   {
     category: "框架与工具",
-    items: ["React", "Next.js", "Tailwind CSS", "Node.js"],
+    items: ["React", "Next.js", "Tailwind CSS", "WinUI 3", "Node.js"],
   },
   {
     category: "AI / LLM",
-    items: ["Claude Code", "CodeX", "Prompt Engineering"],
+    items: ["Claude Code", "Prompt Engineering"],
   },
 ];
 

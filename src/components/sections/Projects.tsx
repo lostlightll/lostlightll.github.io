@@ -16,10 +16,16 @@ const projects: Project[] = [
     tags: ["Wiki", "Fork"],
   },
   {
+    title: "NyxMediaTools",
+    description: "致敬小丸工具箱，视频处理 GUI 工具（名字待定）。",
+    github: "https://github.com/lostlightll/NyxMediaTools",
+    tags: ["WinUI 3", ".NET 9", "C#", "FFmpeg"],
+  },
+  {
     title: "lostlightll.github.io",
-    description: "本网站。基于 Next.js + Tailwind CSS，CodeX 工作流构建。",
+    description: "本网站。基于 Next.js + Tailwind CSS。",
     github: "https://github.com/lostlightll/lostlightll.github.io",
-    tags: ["Next.js", "Tailwind CSS", "CodeX"],
+    tags: ["Next.js", "Tailwind CSS"],
   },
 ];
 

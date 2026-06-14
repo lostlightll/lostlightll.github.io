@@ -79,14 +79,6 @@ Content in Markdown. h2/h3 get auto-generated IDs for TOC linking.
 
 Edit `src/data/content.ts` to change title, author, social links. The `SiteConfig` type is in `src/data/types.ts`.
 
-## Git Commit Style
-
-按模块拆分提交，每个逻辑变更组独立 commit：
-
-- 一个功能 / 一个组件 / 一个文件组 = 一次 commit
-- 不要把所有改动塞进一个大 commit
-- Commit message 用中文描述做了什么（如 `优化 Hero 按钮样式`、`重写 CLAUDE.md 与 README`）
-- 结尾统一加 `Co-Authored-By: Claude <noreply@anthropic.com>`
 
 ## Project Memory
 
