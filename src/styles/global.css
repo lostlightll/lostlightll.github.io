@@ -4,6 +4,13 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Title Serif";
+    src: url("/fonts/title-serif.woff2") format("woff2");
+    font-weight: 900;
+    font-display: swap;
+}
+
 @property --tone-size {
     syntax: "<length>";
     inherits: true;
@@ -23,6 +30,7 @@
     --grain-opacity: 0.22;
 
     --font-display: "Smiley Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-title: "Title Serif", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
     --font-body: "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI", "Microsoft YaHei",
         "Noto Sans SC", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, "SFMono-Regular", monospace;

@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "font:title": "node scripts/fetch-title-font.mjs",
     "astro": "astro"
   },
   "dependencies": {
