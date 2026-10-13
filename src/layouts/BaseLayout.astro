@@ -1,0 +1,32 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import Sidebar from '../components/Sidebar.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import '../styles/global.css';
+
+interface Props {
+    title: string;
+    active: 'home' | 'about';
+    subtitle: string;
+}
+
+const { title, active, subtitle } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+</head>
+<body id="top">
+    <SiteHeader active={active} subtitle={subtitle} />
+    <main class="wrap layout">
+        <Sidebar />
+        <slot />
+        <div class="clear"></div>
+    </main>
+    <SiteFooter />
+</body>
+</html>
