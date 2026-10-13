@@ -8,11 +8,11 @@ const chapters = await getChapters();
 const first = chapters.at(-1);
 
 const stats = [
-    { label: '身份', en: 'Identity', value: 'Student' },
-    { label: '属性', en: 'Trait', value: 'Occasional developer' },
-    { label: '搭档', en: 'Partner', value: '@Sh4ck1e', href: 'https://github.com/Sh4ck1e' },
-    { label: '登场', en: 'Debut', value: first ? `${formatDate(first.post.data.date)} · 第 ${first.label} 话` : '即将登场' },
-    { label: '据点', en: 'Base', value: 'github.com/lostlightll', href: 'https://github.com/lostlightll', wide: true },
+    { label: 'Identity', value: 'Student' },
+    { label: 'Trait', value: 'Occasional developer' },
+    { label: 'Partner', value: '@Sh4ck1e', href: 'https://github.com/Sh4ck1e' },
+    { label: 'Debut', value: first ? `${formatDate(first.post.data.date)} · 第 ${first.label} 话` : '即将登场' },
+    { label: 'Base', value: 'github.com/lostlightll', href: 'https://github.com/lostlightll', wide: true },
 ];
 ---
 
@@ -34,7 +34,7 @@ const stats = [
             <dl class="profile-stats">
                 {stats.map((stat) => (
                     <div class:list={['stat', { 'stat-wide': stat.wide }]}>
-                        <dt><span>{stat.label}</span><span class="stat-en">{stat.en}</span></dt>
+                        <dt>{stat.label}</dt>
                         <dd>
                             {stat.href ? (
                                 <a href={stat.href}>{stat.value}<span class="stat-arrow" aria-hidden="true">↗</span></a>
@@ -158,23 +158,11 @@ const stats = [
     }
 
     .stat dt {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
         color: var(--muted);
         font-family: var(--font-mono);
         font-size: 0.75rem;
-        letter-spacing: 0.08em;
-    }
-
-    .stat-en {
-        text-transform: uppercase;
         letter-spacing: 0.16em;
-    }
-
-    .stat-en::before {
-        content: "·";
-        margin-right: 8px;
+        text-transform: uppercase;
     }
 
     .stat dd {
