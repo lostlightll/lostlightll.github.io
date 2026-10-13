@@ -84,6 +84,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: clip;
     background: var(--paper);
     color: var(--ink-2);
     font: 16px/1.8 var(--font-body);
