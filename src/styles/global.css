@@ -33,7 +33,8 @@
     --font-title: "Title Serif", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
     --font-body: "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI", "Microsoft YaHei",
         "Noto Sans SC", system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, "SFMono-Regular", monospace;
+    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, "SFMono-Regular", "PingFang SC", "Microsoft YaHei UI",
+        "Microsoft YaHei", "Noto Sans SC", monospace;
 
     --border: 3px solid var(--ink);
     --shadow: 6px 6px 0 var(--ink);
