@@ -1,16 +1,26 @@
 ---
+import { getImage } from 'astro:assets';
 import SiteHeader from '../components/SiteHeader.astro';
-import Sidebar from '../components/Sidebar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import avatar from '../assets/avatar.jpg';
 import '../styles/global.css';
 
 interface Props {
-    title: string;
-    active: 'home' | 'about';
-    subtitle: string;
+    title?: string;
+    description?: string;
+    progress?: boolean;
 }
 
-const { title, active, subtitle } = Astro.props;
+const SITE_TITLE = '幻想延续';
+const {
+    title,
+    description = '幻想的个人连载。Student, occasional developer.',
+    progress = false,
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = await getImage({ src: avatar, width: 460, format: 'jpeg', quality: 80 });
 ---
 
 <!DOCTYPE html>
@@ -18,15 +28,79 @@ const { title, active, subtitle } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>{fullTitle}</title>
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical}>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml">
+    <link rel="sitemap" href="/sitemap-index.xml">
+    <link rel="preload" href="/fonts/smiley-sans.woff2" as="font" type="font/woff2" crossorigin>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content={SITE_TITLE}>
+    <meta property="og:title" content={fullTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonical}>
+    <meta property="og:image" content={new URL(ogImage.src, Astro.site)}>
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <meta name="generator" content={Astro.generator}>
+    <script is:inline>
+        (() => {
+            let stored = null;
+            try { stored = localStorage.getItem('theme'); } catch {}
+            const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = stored ?? (dark ? 'dark' : 'light');
+        })();
+    </script>
 </head>
-<body id="top">
-    <SiteHeader active={active} subtitle={subtitle} />
-    <main class="wrap layout">
-        <Sidebar />
+<body>
+    {progress && <div class="reading-progress" aria-hidden="true"></div>}
+    <a class="skip-link" href="#main">跳到正文</a>
+    <SiteHeader />
+    <main id="main">
         <slot />
-        <div class="clear"></div>
     </main>
     <SiteFooter />
 </body>
 </html>
+
+<style>
+    .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -100px;
+        z-index: 200;
+        padding: 0.5em 1em;
+        background: var(--ink);
+        color: var(--paper);
+    }
+
+    .skip-link:focus {
+        top: 1rem;
+    }
+
+    .reading-progress {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 60;
+        height: 5px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        view-transition-name: reading-progress;
+    }
+
+    @supports (animation-timeline: scroll()) {
+        .reading-progress {
+            animation: read linear both;
+            animation-timeline: scroll(root);
+        }
+    }
+
+    @keyframes read {
+        to {
+            transform: scaleX(1);
+        }
+    }
+</style>

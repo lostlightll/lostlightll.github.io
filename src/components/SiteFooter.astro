@@ -1,5 +1,77 @@
-<footer class="footer wrap">
-    <p>© 2026 幻想 <span>·</span> <a href="https://github.com/lostlightll">GitHub / lostlightll</a></p>
-    <a class="back-top" href="#top">返回顶部 ↑</a>
-    <div class="clear"></div>
+<footer class="site-footer">
+    <div class="shell footer-inner">
+        <p class="tbc">
+            <span class="tbc-arrow">To Be Continued</span>
+            <span class="tbc-cn">幻想，未完待续</span>
+        </p>
+        <p class="footer-meta">
+            <span>© 2026 幻想</span>
+            <a href="https://github.com/lostlightll">GitHub</a>
+            <a href="/rss.xml">RSS</a>
+            <span>Built with Astro</span>
+        </p>
+    </div>
 </footer>
+
+<style>
+    .site-footer {
+        margin-top: clamp(64px, 10vw, 120px);
+        border-top: var(--border);
+    }
+
+    .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px 32px;
+        padding-block: 36px 44px;
+    }
+
+    .tbc {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 20px;
+    }
+
+    .tbc-arrow {
+        position: relative;
+        padding: 0.45em 1.4em 0.45em 2.2em;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        letter-spacing: 0.04em;
+        clip-path: polygon(1.1em 0, 100% 0, 100% 100%, 1.1em 100%, 0 50%);
+        transition: transform 0.35s var(--ease-slam);
+    }
+
+    .tbc:hover .tbc-arrow {
+        transform: translateX(-8px);
+    }
+
+    .tbc-cn {
+        color: var(--muted);
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+    }
+
+    .footer-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 22px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+    }
+
+    .footer-meta a {
+        color: var(--ink);
+    }
+
+    .footer-meta a:hover {
+        color: var(--accent-ink);
+    }
+</style>
