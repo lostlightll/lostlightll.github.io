@@ -1,19 +1,189 @@
 ---
-interface Props {
-    active: 'home' | 'about';
-    subtitle: string;
-}
-
-const { active, subtitle } = Astro.props;
+const path = Astro.url.pathname;
+const links = [
+    { href: '/#contents', label: '目录', current: path === '/' || path.startsWith('/posts/') },
+    { href: '/about/', label: '作者', current: path.startsWith('/about') },
+    { href: '/rss.xml', label: 'RSS', current: false },
+];
 ---
 
-<header class="site-header">
-    <div class="wrap">
-        <a class="site-name" href="/">幻想<span>{subtitle}</span></a>
-        <nav>
-            <a class:list={{ active: active === 'home' }} href="/">首页</a>
-            <a class:list={{ active: active === 'about' }} href="/about/">关于</a>
+<header class="topbar">
+    <div class="shell topbar-inner">
+        <a class="logo" href="/">
+            <span class="logo-mark" aria-hidden="true">幻</span>
+            <span class="logo-text">幻想延续</span>
+        </a>
+        <nav aria-label="主导航">
+            {links.map((link) => (
+                <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>
+            ))}
         </nav>
-        <div class="clear"></div>
+        <button class="theme-toggle" type="button" aria-label="切换深浅色"></button>
     </div>
 </header>
+
+<script>
+    const root = document.documentElement;
+    const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+    const setTheme = (theme: string, remember: boolean) => {
+        root.dataset.theme = theme;
+        toggle?.setAttribute('aria-pressed', String(theme === 'dark'));
+        if (remember) {
+            try { localStorage.setItem('theme', theme); } catch {}
+        }
+    };
+
+    setTheme(root.dataset.theme ?? 'light', false);
+
+    toggle?.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        if (!document.startViewTransition || reduceMotion.matches) {
+            setTheme(next, true);
+            return;
+        }
+        const rect = toggle.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        root.style.setProperty('--vt-x', `${x}px`);
+        root.style.setProperty('--vt-y', `${y}px`);
+        root.style.setProperty('--vt-r', `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`);
+        root.classList.add('theme-switching');
+        document
+            .startViewTransition(() => setTheme(next, true))
+            .finished.finally(() => root.classList.remove('theme-switching'));
+    });
+
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+        let stored = null;
+        try { stored = localStorage.getItem('theme'); } catch {}
+        if (!stored) setTheme(event.matches ? 'dark' : 'light', false);
+    });
+</script>
+
+<style>
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: var(--border);
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(10px);
+        view-transition-name: topbar;
+    }
+
+    .topbar-inner {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 3vw, 32px);
+        height: 68px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-right: auto;
+        color: var(--ink);
+        text-decoration: none;
+    }
+
+    .logo-mark {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        background: var(--accent);
+        color: var(--on-accent);
+        font-family: var(--font-display);
+        font-size: 24px;
+        line-height: 1;
+        transform: rotate(-7deg);
+        transition: transform 0.4s var(--ease-slam);
+    }
+
+    .logo:hover .logo-mark {
+        transform: rotate(5deg) scale(1.08);
+    }
+
+    .logo-text {
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        letter-spacing: 0.04em;
+    }
+
+    nav {
+        display: flex;
+        gap: clamp(14px, 2.6vw, 28px);
+    }
+
+    nav a {
+        position: relative;
+        isolation: isolate;
+        color: var(--ink);
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        text-decoration: none;
+    }
+
+    nav a::after {
+        content: "";
+        position: absolute;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        height: 6px;
+        background: var(--accent);
+        transform: scaleX(0) skewX(-15deg);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease-out);
+        z-index: -1;
+    }
+
+    nav a:hover::after,
+    nav a[aria-current="page"]::after {
+        transform: scaleX(1) skewX(-15deg);
+    }
+
+    .theme-toggle {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: var(--border);
+        border-radius: 50%;
+        background: var(--paper);
+        color: var(--ink);
+        font: 1.15rem/1 var(--font-display);
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .theme-toggle::after {
+        content: "夜";
+    }
+
+    :global([data-theme="dark"]) .theme-toggle::after {
+        content: "昼";
+    }
+
+    .theme-toggle:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .theme-toggle:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    @media (max-width: 560px) {
+        .logo-text {
+            display: none;
+        }
+    }
+</style>

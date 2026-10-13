@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404" description="这一页还没画出来。">
+    <section class="lost shell">
+        <div class="lost-panel panel">
+            <div class="speedlines" aria-hidden="true"></div>
+            <p class="lost-code" aria-hidden="true">404</p>
+            <h1 class="lost-title">这一页还没画出来</h1>
+            <p class="lost-text">也许它在下一话里。</p>
+            <a class="lost-back" href="/#contents">回到目录 →</a>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .lost {
+        padding-top: clamp(32px, 6vw, 72px);
+    }
+
+    .lost-panel {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        padding: clamp(48px, 9vw, 110px) 24px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .lost-code {
+        color: transparent;
+        font-family: var(--font-display);
+        font-size: clamp(7rem, 26vw, 15rem);
+        line-height: 0.9;
+        -webkit-text-stroke: 3px var(--ink);
+        text-shadow: 0.05em 0.05em 0 var(--accent);
+    }
+
+    .lost-title {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+    }
+
+    .lost-text {
+        color: var(--muted);
+    }
+
+    .lost-back {
+        margin-top: 18px;
+        padding: 0.6em 1.4em;
+        border: var(--border);
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        text-decoration: none;
+        box-shadow: 5px 5px 0 var(--accent);
+        transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    }
+
+    .lost-back:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--accent);
+    }
+</style>
