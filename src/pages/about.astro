@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EntranceGate from '../components/EntranceGate.astro';
 import avatar from '../assets/avatar.jpg';
 import { formatDate, getChapters } from '../utils/posts';
 
@@ -45,6 +46,7 @@ const stats = [
             </dl>
         </div>
     </section>
+    <EntranceGate />
 </BaseLayout>
 
 <style>
