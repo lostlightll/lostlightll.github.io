@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ChapterCard from '../components/ChapterCard.astro';
+import EntranceGate from '../components/EntranceGate.astro';
 import avatar from '../assets/avatar.jpg';
 import { formatDate, getChapters, groupByYear } from '../utils/posts';
 
@@ -38,6 +39,7 @@ const titleLines = [[...'幻想'], [...'延续']];
             <p class="character-name">幻想 <span>@lostlightll</span></p>
         </a>
     </section>
+    <EntranceGate />
 
     <section id="contents" class="contents shell" aria-labelledby="contents-title">
         <header class="contents-head">

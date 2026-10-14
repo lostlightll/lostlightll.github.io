@@ -1,0 +1,15 @@
+---
+// 紧跟在入场区块之后：区块内的图片解码完成前，暂停其中的入场动画
+---
+
+<script is:inline>
+    (() => {
+        const block = document.currentScript.previousElementSibling;
+        const img = block?.querySelector('img');
+        if (!img || img.complete) return;
+        block.dataset.awaitingImage = '';
+        const play = () => delete block.dataset.awaitingImage;
+        img.decode().then(play, play);
+        setTimeout(play, 3000);
+    })();
+</script>

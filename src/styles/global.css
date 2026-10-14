@@ -260,6 +260,11 @@ svg {
     box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--accent);
 }
 
+[data-awaiting-image],
+[data-awaiting-image] * {
+    animation-play-state: paused !important;
+}
+
 /* 页面切换：跨文档视图过渡 */
 @view-transition {
     navigation: auto;
