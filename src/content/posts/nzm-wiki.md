@@ -7,6 +7,8 @@ tags: [项目, 逆战未来]
 
 [逆战未来 Wiki](https://lostlightll.github.io/nzm-wiki/) 是我在维护的《逆战未来》非官方资料站，武器数据、插件效果、塔防图鉴都有，也写一些机制说明和攻略。源码在 [lostlightll/nzm-wiki](https://github.com/lostlightll/nzm-wiki)。
 
+![逆战未来 Wiki 首页，地图背景上排着武器、插件、塔防、敌人、超限、攻略六个入口](./nzm-wiki/home.png)
+
 ## 从 Fork 开始
 
 项目最早是 [@qiekn](https://github.com/qiekn) 写的 [nzm-wiki](https://github.com/qiekn/nzm-wiki)。原项目更新得比较慢，部分枪械数据也不够清楚，2026 年 5 月底我就 fork 了一份，按自己的需求改。
