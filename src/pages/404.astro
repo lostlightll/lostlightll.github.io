@@ -22,11 +22,6 @@ const REDIRECTS = [
     // 组织仓库绑了自定义域名后，可以换成下面这行一步直达：
     // { from: '/nzm-wiki', to: 'https://nzm-wiki.com', stripPrefix: true },
 ];
-
-const movedList = REDIRECTS.map((r) => ({
-    name: r.from.slice(1),
-    url: `${r.to}${r.stripPrefix ? '' : r.from}/`,
-}));
 ---
 
 <BaseLayout title="404" description="这一页还没画出来。">
@@ -45,16 +40,7 @@ const movedList = REDIRECTS.map((r) => ({
             if (rule) {
                 const from = rule.from.replace(/\/+$/, '');
                 const rest = (rule.stripPrefix ? path.slice(from.length) : path) || '/';
-                const url = rule.to.replace(/\/+$/, '') + rest + location.search + location.hash;
-                location.replace(url);
-
-                document.addEventListener('DOMContentLoaded', () => {
-                    document.title = '已迁移 · 幻想延续';
-                    document.querySelector('.lost-default').hidden = true;
-                    document.querySelector('.lost-moved').hidden = false;
-                    for (const a of document.querySelectorAll('.lost-moved a')) a.href = url;
-                    document.querySelector('.lost-moved-url').textContent = url;
-                });
+                location.replace(rule.to.replace(/\/+$/, '') + rest + location.search + location.hash);
             }
         </script>
     </Fragment>
@@ -63,26 +49,9 @@ const movedList = REDIRECTS.map((r) => ({
         <div class="lost-panel panel">
             <div class="speedlines" aria-hidden="true"></div>
             <p class="lost-code" aria-hidden="true">404</p>
-
-            <div class="lost-group lost-default">
-                <h1 class="lost-title">这一页还没画出来</h1>
-                <p class="lost-text">也许它在下一话里。</p>
-                <noscript>
-                    <p class="lost-text">
-                        如果你在找这些项目，它们已经搬家了：
-                        {movedList.map((m, i) => (
-                            <>{i > 0 && '、'}<a href={m.url}>{m.name}</a></>
-                        ))}
-                    </p>
-                </noscript>
-                <a class="lost-back" href="/#contents">回到目录 →</a>
-            </div>
-
-            <div class="lost-group lost-moved" hidden>
-                <h1 class="lost-title">这一页搬家了</h1>
-                <p class="lost-text">已迁移至 <a class="lost-moved-url" href="#"></a></p>
-                <a class="lost-back" href="#">前往新地址 →</a>
-            </div>
+            <h1 class="lost-title">这一页还没画出来</h1>
+            <p class="lost-text">也许它在下一话里。</p>
+            <a class="lost-back" href="/#contents">回到目录 →</a>
         </div>
     </section>
 </BaseLayout>
@@ -100,21 +69,6 @@ const movedList = REDIRECTS.map((r) => ({
         overflow: hidden;
         text-align: center;
         box-shadow: var(--shadow-lg);
-    }
-
-    .lost-group {
-        display: grid;
-        justify-items: center;
-        gap: 14px;
-    }
-
-    .lost-group[hidden] {
-        display: none;
-    }
-
-    .lost-text a {
-        color: inherit;
-        word-break: break-all;
     }
 
     .lost-code {
