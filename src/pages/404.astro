@@ -1,15 +1,88 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+/*
+ * 已迁移项目的跳转表（加新项目只改这里）
+ *
+ * 仓库迁走后，https://lostlightll.github.io/<仓库名>/... 会落到本站的 404，
+ * 这里按路径前缀匹配，跳到新地址，子路径、?query、#hash 原样保留。
+ *
+ * from        旧路径前缀，开头带 "/"，结尾不带 "/"。精确匹配：/nzm-wiki 不会命中 /nzm-wiki2，不区分大小写
+ * to          新地址的基础 URL，结尾不带 "/"
+ * stripPrefix false → 保留前缀，迁到组织后仍用 github.io：
+ *                     /nzm-wiki/a → https://endlessfantasia.github.io/nzm-wiki/a
+ *             true  → 去掉前缀，绑了自定义域名：
+ *                     /nzm-wiki/a → https://nzm-wiki.com/a
+ *
+ * 注意：在旧仓库真正迁走前，它自己的 Pages 优先，这里不会生效。
+ * 不要在 lostlightll 下再建同名仓库，会破坏 GitHub 对旧仓库地址的自动重定向。
+ */
+const REDIRECTS = [
+    { from: '/nzm-wiki', to: 'https://endlessfantasia.github.io', stripPrefix: false },
+    // 组织仓库绑了自定义域名后，可以换成下面这行一步直达：
+    // { from: '/nzm-wiki', to: 'https://nzm-wiki.com', stripPrefix: true },
+];
+
+const movedList = REDIRECTS.map((r) => ({
+    name: r.from.slice(1),
+    url: `${r.to}${r.stripPrefix ? '' : r.from}/`,
+}));
 ---
 
 <BaseLayout title="404" description="这一页还没画出来。">
+    <Fragment slot="head">
+        <meta name="robots" content="noindex">
+        <script define:vars={{ redirects: REDIRECTS }}>
+            const path = location.pathname;
+            const lower = path.toLowerCase();
+            const rule = [...redirects]
+                .sort((a, b) => b.from.length - a.from.length)
+                .find((r) => {
+                    const key = r.from.replace(/\/+$/, '').toLowerCase();
+                    return lower === key || lower.startsWith(key + '/');
+                });
+
+            if (rule) {
+                const from = rule.from.replace(/\/+$/, '');
+                const rest = (rule.stripPrefix ? path.slice(from.length) : path) || '/';
+                const url = rule.to.replace(/\/+$/, '') + rest + location.search + location.hash;
+                location.replace(url);
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.title = '已迁移 · 幻想延续';
+                    document.querySelector('.lost-default').hidden = true;
+                    document.querySelector('.lost-moved').hidden = false;
+                    for (const a of document.querySelectorAll('.lost-moved a')) a.href = url;
+                    document.querySelector('.lost-moved-url').textContent = url;
+                });
+            }
+        </script>
+    </Fragment>
+
     <section class="lost shell">
         <div class="lost-panel panel">
             <div class="speedlines" aria-hidden="true"></div>
             <p class="lost-code" aria-hidden="true">404</p>
-            <h1 class="lost-title">这一页还没画出来</h1>
-            <p class="lost-text">也许它在下一话里。</p>
-            <a class="lost-back" href="/#contents">回到目录 →</a>
+
+            <div class="lost-group lost-default">
+                <h1 class="lost-title">这一页还没画出来</h1>
+                <p class="lost-text">也许它在下一话里。</p>
+                <noscript>
+                    <p class="lost-text">
+                        如果你在找这些项目，它们已经搬家了：
+                        {movedList.map((m, i) => (
+                            <>{i > 0 && '、'}<a href={m.url}>{m.name}</a></>
+                        ))}
+                    </p>
+                </noscript>
+                <a class="lost-back" href="/#contents">回到目录 →</a>
+            </div>
+
+            <div class="lost-group lost-moved" hidden>
+                <h1 class="lost-title">这一页搬家了</h1>
+                <p class="lost-text">已迁移至 <a class="lost-moved-url" href="#"></a></p>
+                <a class="lost-back" href="#">前往新地址 →</a>
+            </div>
         </div>
     </section>
 </BaseLayout>
@@ -27,6 +100,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         overflow: hidden;
         text-align: center;
         box-shadow: var(--shadow-lg);
+    }
+
+    .lost-group {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+    }
+
+    .lost-group[hidden] {
+        display: none;
+    }
+
+    .lost-text a {
+        color: inherit;
+        word-break: break-all;
     }
 
     .lost-code {
